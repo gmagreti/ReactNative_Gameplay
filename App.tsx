@@ -1,8 +1,29 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
+import { StatusBar } from 'expo-status-bar';
+import { useFonts } from 'expo-font';
+import AppLoading from 'expo-app-loading';
+import { Inter_400Regular, Inter_500Medium } from '@expo-google-fonts/inter';
+import {
+  Rajdhani_500Medium,
+  Rajdhani_700Bold,
+} from '@expo-google-fonts/rajdhani';
 
 import { SignIn } from './src/screens/SignIn';
 
 export default function App() {
-  return <SignIn />;
+  const [fontsLoaded] = useFonts({
+    Inter_400Regular,
+    Inter_500Medium,
+    Rajdhani_500Medium,
+    Rajdhani_700Bold,
+  });
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
+  return (
+    <>
+      <StatusBar style="light" backgroundColor="transparent" translucent />
+      <SignIn />
+    </>
+  );
 }
